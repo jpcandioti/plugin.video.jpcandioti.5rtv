@@ -7,25 +7,30 @@
 import sys
 import xbmcgui
 import xbmcplugin
+import xbmcaddon
 
-_handle = int(sys.argv[1])
+ADDON = xbmcaddon.Addon()
+LANGUAGE = ADDON.getLocalizedString
+
+_HANDLE = int(sys.argv[1])
 
 LIVESTREAM_CHANNEL  = '22636012'
 LIVESTREAM_EVENT    = '8242619'
 YOUTUBE_CHANNEL     = 'UCCvR_NFSKLkPM-7zbGV2Ckg'
 
-
 def mainlist():
     listing = []
 
-    list_item = xbmcgui.ListItem(label='En vivo', iconImage='DefaultTVShows.png')
+    list_item = xbmcgui.ListItem(label=LANGUAGE(32001))
+    list_item.setArt({'icon': 'DefaultTVShows.png'})
     url = 'plugin://plugin.video.livestream/?url=%2Flive_now&mode=104&event_id=' + LIVESTREAM_EVENT + '&owner_id=' + LIVESTREAM_CHANNEL + '&video_id=LIVE'
     list_item.setProperty('IsPlayable', 'true')
-    list_item.setInfo(type='video', infoLabels={'title': '5RTV en vivo'})
+    list_item.setInfo(type='video', infoLabels={'title': LANGUAGE(32003)})
     is_folder = False
     listing.append((url, list_item, is_folder))
 
-    list_item = xbmcgui.ListItem(label='Programas emitidos', iconImage='DefaultVideoPlaylists.png')
+    list_item = xbmcgui.ListItem(label=LANGUAGE(32002))
+    list_item.setArt({'icon': 'DefaultVideoPlaylists.png'})
     url = 'plugin://plugin.video.youtube/channel/' + YOUTUBE_CHANNEL + '/playlists/'
     is_folder = True
     listing.append((url, list_item, is_folder))
@@ -34,8 +39,8 @@ def mainlist():
 
 
 def list_items(listing):
-    xbmcplugin.addDirectoryItems(_handle, listing, len(listing))
-    xbmcplugin.endOfDirectory(_handle)
+    xbmcplugin.addDirectoryItems(_HANDLE, listing, len(listing))
+    xbmcplugin.endOfDirectory(_HANDLE)
 
 
 if __name__ == '__main__':

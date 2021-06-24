@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.jpcandioti.5rtv"
-version="1.0.0"
+version="1.1.0"
 name="5RTV Addon"
 provider-name="@JPCandioti">
 <requires>
-  <import addon="xbmc.python" version="2.20.0"/>
-  <import addon="plugin.video.livestream" version="2017.4.3"/>
-  <import addon="plugin.video.youtube" version="5.4.0"/>
+  <import addon="xbmc.python" version="3.0.0"/>
+  <import addon="plugin.video.livestream" version="2021.6.16+matrix.1"/>
+  <import addon="plugin.video.youtube" version="6.8.15+matrix.1"/>
 </requires>
 <extension point="xbmc.python.pluginsource" library="main.py">
   <provides>video</provides>
